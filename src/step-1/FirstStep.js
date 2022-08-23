@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { observer } from "mobx-react-lite";
 
 function LoggedBar({ lastLoggedDate }) {
     return (
@@ -13,7 +14,7 @@ function LoggoutBar() {
 }
 
 
-const FirstStep = ({ store }) => {
+const FirstStep = observer(({ store }) => {
     const [firstname, setFirstname] = useState(store.firstname);
     const [surname, setSurname] = useState(store.surname);
 
@@ -45,6 +46,6 @@ const FirstStep = ({ store }) => {
             {buttons}
         </>
     )
-}
+})
 
 export default FirstStep
