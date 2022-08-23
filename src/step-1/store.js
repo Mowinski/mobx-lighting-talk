@@ -1,4 +1,4 @@
-import { action, computed, makeObservable, observable } from "mobx";
+import { action, computed, makeObservable, observable, reaction } from "mobx";
 
 class UserStore {
     firstname = "";
@@ -17,6 +17,8 @@ class UserStore {
             logout: action,
             changeName: action,
         })
+
+        reaction(() => this.isLogged, this.notifyAboutLogin.bind(this));
     }
 
     login() {
@@ -47,7 +49,6 @@ class UserStore {
         }
         else {
             console.log(`Your friend ${this.firstname} ${this.surname} is offline`);
-
         }
 
     }
