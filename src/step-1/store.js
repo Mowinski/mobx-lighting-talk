@@ -1,9 +1,23 @@
+import { action, computed, makeObservable, observable } from "mobx";
 
 class UserStore {
     firstname = "";
     surname = ""
     isLogged = false;
     lastLoggedDate = null;
+
+    constructor() {
+        makeObservable(this, {
+            firstname: observable,
+            surname: observable,
+            isLogged: observable,
+            lastLoggedDate: observable,
+            getInitials: computed,
+            login: action,
+            logout: action,
+            changeName: action,
+        })
+    }
 
     login() {
         this.isLogged = true;
@@ -33,7 +47,9 @@ class UserStore {
         }
         else {
             console.log(`Your friend ${this.firstname} ${this.surname} is offline`);
+
         }
+
     }
 }
 
